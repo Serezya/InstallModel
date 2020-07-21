@@ -10,93 +10,65 @@ public class Main {
     public static void main(String[] args) throws IOException {
         StringBuilder log = new StringBuilder();
 
-        File dir = new File("D:\\Games");
-        if (dir.mkdir())
-            log.append("Каталог Games успешно создан.\n");
-        else
-            log.append("Ошибка создания каталога Games\n");
+        String dir = "D:\\Games";
+        createDir(dir, log);
 
-        File src = new File("D:\\Games\\src");
-        if (src.mkdir())
-            log.append("Каталог src успешно создан.\n");
-        else
-            log.append("Ошибка создания каталога src\n");
+        String src = "D:\\Games\\src";
+        createDir(src, log);
 
-        File res = new File("D:\\Games\\res");
-        if (res.mkdir())
-            log.append("Каталог res успешно создан.\n");
-        else
-            log.append("Ошибка создания каталога res\n");
+        String res = "D:\\Games\\res";
+        createDir(res, log);
 
-        File savegames = new File("D:\\Games\\savegames");
-        if (savegames.mkdir())
-            log.append("Каталог savegames успешно создан.\n");
-        else
-            log.append("Ошибка создания каталога savegames\n");
+        String savegames = "D:\\Games\\savegames";
+        createDir(savegames, log);
 
-        File temp = new File("D:\\Games\\temp");
-        if (temp.mkdir())
-            log.append("Каталог temp успешно создан.\n");
-        else
-            log.append("Ошибка создания каталога temp\n");
+        String temp = "D:\\Games\\temp";
+        createDir(temp, log);
 
-        File tempTxt = new File("D:\\Games\\temp\\temp.txt");
-        try {
-            if (tempTxt.createNewFile())
-                log.append("Файл temp.txt успешно создан.\n");
-        } catch (IOException e) {
-            log.append(Arrays.toString(e.getStackTrace()));
-        }
+        String tempTxt = "D:\\Games\\temp\\temp.txt";
+        createFile(tempTxt, log);
 
-        File main = new File("D:\\Games\\src\\main");
-        if (main.mkdir())
-            log.append("Каталог main успешно создан.\n");
-        else
-            log.append("Ошибка создания каталога main\n");
+        String main = "D:\\Games\\src\\main";
+        createDir(main, log);
 
-        File test = new File("D:\\Games\\src\\test");
-        if (test.mkdir())
-            log.append("Каталог test успешно создан.\n");
-        else
-            log.append("Ошибка создания каталога test\n");
+        String test = "D:\\Games\\src\\test";
+        createDir(test, log);
 
-        File mainFileFirst = new File("D:\\Games\\src\\main\\Main.java");
-        try {
-            if (mainFileFirst.createNewFile())
-                log.append("Файл Main.java успешно создан.\n");
-        } catch (IOException e) {
-            log.append(Arrays.toString(e.getStackTrace()));
-        }
+        String mainFileFirst = "D:\\Games\\src\\main\\Main.java";
+        createFile(mainFileFirst, log);
 
-        File mainFileSecond = new File("D:\\Games\\src\\main\\Utils.java");
-        try {
-            if (mainFileSecond.createNewFile())
-                log.append("Файл Utils.java успешно создан.\n");
-        } catch (IOException e) {
-            log.append(Arrays.toString(e.getStackTrace()));
-        }
+        String mainFileSecond = "D:\\Games\\src\\main\\Utils.java";
+        createFile(mainFileSecond, log);
 
-        File drawables = new File("D:\\Games\\res\\drawables");
-        if (drawables.mkdir())
-            log.append("Каталог vectors успешно создан.\n");
-        else
-            log.append("Ошибка создания каталога drawables.\n");
+        String drawables = "D:\\Games\\res\\drawables";
+        createDir(drawables, log);
 
-        File vectors = new File("D:\\Games\\res\\vectors");
-        if (vectors.mkdir())
-            log.append("Каталог vectors успешно создан.\n");
+        String vectors = "D:\\Games\\res\\vectors";
+        createDir(vectors, log);
 
-        else
-            log.append("Ошибка создания каталога vectors\n");
-
-        File icons = new File("D:\\Games\\res\\icons");
-        if (icons.mkdir())
-            log.append("Каталог icons успешно создан.\n");
-        else
-            log.append("Ошибка создания каталога icons.\n");
+        String icons = "D:\\Games\\res\\icons";
+        createDir(icons, log);
 
         FileWriter fw = new FileWriter("D:\\Games\\temp\\temp.txt", false);
         fw.write(log.toString());
         fw.flush();
+    }
+
+    private static void createFile(String path, StringBuilder log) {
+        File file = new File(path);
+        try {
+            if (file.createNewFile())
+                log.append("Файл Utils.java успешно создан.\n");
+        } catch (IOException e) {
+            log.append(Arrays.toString(e.getStackTrace()));
+        }
+    }
+
+    private static void createDir(String path, StringBuilder log) {
+        File dir = new File(path);
+        if (dir.mkdir())
+            log.append("Каталог ").append(path).append(" успешно создан.\n");
+        else
+            log.append("Ошибка создания каталога ").append(path).append(".\n");
     }
 }
